@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "langchain-ujeebu"
+version = "0.1.0"
+description = "LangChain integration for Ujeebu Extract API"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Ujeebu", email = "support@ujeebu.com"}
+]
+keywords = ["langchain", "ujeebu", "extract", "article", "scraping", "nlp", "llm", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "langchain>=0.1.0",
+    "langchain-core>=0.1.0",
+    "ujeebu-python>=0.1.5",
+    "pydantic>=2.0.0",
+    "requests",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "types-requests",
+    "aiohttp>=3.8.0",
+]
+test = [
+    "langchain-tests>=0.3.0",
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+]
+test_integration = [
+    "langchain-tests>=0.3.0",
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[project.urls]
+Homepage = "https://ujeebu.com"
+Documentation = "https://ujeebu.com/docs"
+Repository = "https://github.com/ujeebu/langchain-ujeebu"
+"Bug Tracker" = "https://github.com/ujeebu/langchain-ujeebu/issues"
+
+[tool.setuptools.packages.find]
+include = ["langchain_ujeebu*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311', 'py312']
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "ujeebu_python.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"

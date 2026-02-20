@@ -1,0 +1,7 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+recursive-include langchain_ujeebu *.py
+recursive-include tests *.py
+recursive-include examples *.py
