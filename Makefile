@@ -1,4 +1,4 @@
-.PHONY: all install install-dev install-test test test-unit test-integration lint format type-check clean build publish-test publish help
+.PHONY: all install install-dev install-test test test-unit test-integration lint format type-check clean build publish-test publish bump-patch bump-minor bump-major help
 
 # Default target
 all: help
@@ -66,6 +66,30 @@ publish-test: build
 publish: build
 	python -m twine upload dist/*
 
+# Version bumping targets
+CURRENT_VERSION := $(shell python -c "import re; print(re.search(r'version\s*=\s*\"(.+?)\"', open('pyproject.toml').read()).group(1))")
+
+bump-patch:
+	@echo "Current version: $(CURRENT_VERSION)"
+	$(eval NEW_VERSION := $(shell python -c "v='$(CURRENT_VERSION)'.split('.'); v[2]=str(int(v[2])+1); print('.'.join(v))"))
+	@sed -i '' 's/version = "$(CURRENT_VERSION)"/version = "$(NEW_VERSION)"/' pyproject.toml
+	@sed -i '' 's/__version__ = "$(CURRENT_VERSION)"/__version__ = "$(NEW_VERSION)"/' langchain_ujeebu/__init__.py
+	@echo "Bumped to $(NEW_VERSION)"
+
+bump-minor:
+	@echo "Current version: $(CURRENT_VERSION)"
+	$(eval NEW_VERSION := $(shell python -c "v='$(CURRENT_VERSION)'.split('.'); v[1]=str(int(v[1])+1); v[2]='0'; print('.'.join(v))"))
+	@sed -i '' 's/version = "$(CURRENT_VERSION)"/version = "$(NEW_VERSION)"/' pyproject.toml
+	@sed -i '' 's/__version__ = "$(CURRENT_VERSION)"/__version__ = "$(NEW_VERSION)"/' langchain_ujeebu/__init__.py
+	@echo "Bumped to $(NEW_VERSION)"
+
+bump-major:
+	@echo "Current version: $(CURRENT_VERSION)"
+	$(eval NEW_VERSION := $(shell python -c "v='$(CURRENT_VERSION)'.split('.'); v[0]=str(int(v[0])+1); v[1]='0'; v[2]='0'; print('.'.join(v))"))
+	@sed -i '' 's/version = "$(CURRENT_VERSION)"/version = "$(NEW_VERSION)"/' pyproject.toml
+	@sed -i '' 's/__version__ = "$(CURRENT_VERSION)"/__version__ = "$(NEW_VERSION)"/' langchain_ujeebu/__init__.py
+	@echo "Bumped to $(NEW_VERSION)"
+
 # Help target
 help:
 	@echo "LangChain Ujeebu Integration - Available targets:"
@@ -94,4 +118,9 @@ help:
 	@echo "  build            Build distribution packages"
 	@echo "  publish-test     Publish to TestPyPI"
 	@echo "  publish          Publish to PyPI"
+	@echo ""
+	@echo "Versioning:"
+	@echo "  bump-patch       Bump patch version (0.1.0 -> 0.1.1)"
+	@echo "  bump-minor       Bump minor version (0.1.0 -> 0.2.0)"
+	@echo "  bump-major       Bump major version (0.1.0 -> 1.0.0)"
 
