@@ -172,7 +172,7 @@ class TestUjeebuLoader:
         assert len(documents) == 1
         # Verify quick_mode was passed in params
         call_args = mock_client.extract.call_args
-        assert call_args[0][1]["quick_mode"] is True
+        assert call_args[0][1]["quick_mode"] == 1
 
     @patch("langchain_ujeebu.document_loaders.UjeebuClient")
     def test_load_with_error(self, mock_client_class, mock_api_key, caplog):

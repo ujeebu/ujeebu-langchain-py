@@ -127,7 +127,10 @@ def scrape_quotes_with_pagination():
             # Get next page URL
             next_page = data.get("next_page")
             if next_page:
-                url = f"https://quotes.toscrape.com{next_page}"
+                if next_page.startswith("http"):
+                    url = next_page
+                else:
+                    url = f"https://quotes.toscrape.com{next_page}"
             else:
                 url = None
 
@@ -167,7 +170,7 @@ def news_aggregation_pipeline():
     # First, get article links from the category page
     extraction_rules = {
         "articles": {
-            "selector": "a[href*='/news/technology-']",
+            "selector": "a[href*='/news/articles/']",
             "type": "obj",
             "multiple": True,
             "children": {

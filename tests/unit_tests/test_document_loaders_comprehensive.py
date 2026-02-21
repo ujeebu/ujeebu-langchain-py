@@ -956,12 +956,12 @@ class TestUjeebuLoaderAPIParams:
         call_args = mock_client.extract.call_args
         params = call_args[0][1]  # Second positional argument
 
-        assert params["text"] is True
-        assert params["html"] is True
-        assert params["author"] is True
-        assert params["pub_date"] is False
-        assert params["images"] is True
-        assert params["quick_mode"] is True
+        assert params["text"] == 1
+        assert params["html"] == 1
+        assert params["author"] == 1
+        assert params["pub_date"] == 0
+        assert params["images"] == 1
+        assert params["quick_mode"] == 1
 
     @patch("langchain_ujeebu.document_loaders.UjeebuClient")
     def test_url_passed_to_api(self, mock_client_class, mock_api_key):

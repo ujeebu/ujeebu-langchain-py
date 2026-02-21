@@ -236,7 +236,7 @@ def direct_tool_usage():
 
     # Direct extraction
     print("\n📰 Extracting article directly...")
-    article = extract_tool._run(url="https://quotes.toscrape.com/")
+    article = extract_tool._run(url="https://ujeebu.com/blog/how-to-scrape-google-search-results/")
     print(f"Extracted content (first 500 chars):\n{article[:500]}...")
 
     # Direct scraping with extraction rules

@@ -17,7 +17,7 @@ import os
 from langchain_ujeebu import UjeebuLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 
@@ -41,9 +41,9 @@ def build_rag_from_articles():
     print("\n📰 Step 1: Loading articles with Ujeebu...")
 
     article_urls = [
-        "https://www.bbc.com/news/technology-67881954",
-        "https://www.theverge.com/2024/1/16/24040562/google-layoffs-2024",
-        "https://techcrunch.com/2024/01/15/openai-gpt-store/",
+        "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/",
+        "https://ujeebu.com/blog/how-to-scrape-google-search-results/",
+        "https://en.wikipedia.org/wiki/Web_scraping",
     ]
 
     loader = UjeebuLoader(
@@ -115,9 +115,9 @@ def build_rag_from_articles():
     print("\n❓ Step 5: Querying the RAG system...")
 
     questions = [
-        "What are the latest developments in AI technology?",
-        "Which companies have had layoffs recently?",
-        "What is the GPT Store?",
+        "What are the main techniques for web scraping?",
+        "How can web data be used for lead generation?",
+        "What tools are recommended for scraping Google?",
     ]
 
     for question in questions:
@@ -143,8 +143,8 @@ def rag_with_topic_focus():
 
     # Load AI-focused articles
     ai_news_urls = [
-        "https://www.theverge.com/2024/1/16/24040562/google-layoffs-2024",
-        "https://techcrunch.com/2024/01/15/openai-gpt-store/",
+        "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/",
+        "https://ujeebu.com/blog/how-to-scrape-google-search-results/",
     ]
 
     print("\n📰 Loading AI news articles...")
@@ -192,7 +192,7 @@ def rag_with_topic_focus():
     # Test queries
     print("\n❓ Querying AI news RAG system...")
 
-    result = qa_chain.invoke({"query": "Summarize the latest AI industry news"})
+    result = qa_chain.invoke({"query": "What are the key web scraping techniques discussed?"})
     print(f"\n   Summary: {result['result']}")
 
 
@@ -206,7 +206,7 @@ def incremental_rag():
     print("\n📰 Initial load: Loading first batch of articles...")
 
     initial_urls = [
-        "https://www.bbc.com/news/technology-67881954",
+        "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/",
     ]
 
     loader = UjeebuLoader(urls=initial_urls, quick_mode=True)
@@ -223,7 +223,7 @@ def incremental_rag():
     print("\n📰 Adding new articles to existing RAG...")
 
     new_urls = [
-        "https://techcrunch.com/2024/01/15/openai-gpt-store/",
+        "https://ujeebu.com/blog/how-to-scrape-google-search-results/",
     ]
 
     new_loader = UjeebuLoader(urls=new_urls, quick_mode=True)

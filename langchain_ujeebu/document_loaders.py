@@ -121,12 +121,12 @@ class UjeebuLoader(BaseLoader):
             Dictionary containing article data, or None if extraction failed
         """
         params: Dict[str, Any] = {
-            "text": self.extract_text,
-            "html": self.extract_html,
-            "author": self.extract_author,
-            "pub_date": self.extract_pub_date,
-            "images": self.extract_images,
-            "quick_mode": self.quick_mode,
+            "text": int(self.extract_text),
+            "html": int(self.extract_html),
+            "author": int(self.extract_author),
+            "pub_date": int(self.extract_pub_date),
+            "images": int(self.extract_images),
+            "quick_mode": int(self.quick_mode),
         }
 
         try:

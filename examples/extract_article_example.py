@@ -33,7 +33,7 @@ def basic_extraction():
     extract_tool = UjeebuExtractTool()
 
     # Extract article content
-    url = "https://www.bbc.com/news/technology-67881954"
+    url = "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/"
     result = extract_tool._run(url=url)
 
     print(f"\nExtracted content from: {url}")
@@ -50,7 +50,7 @@ def extraction_with_options():
     extract_tool = UjeebuExtractTool()
 
     # Extract with images and quick mode
-    url = "https://techcrunch.com/2024/01/15/openai-gpt-store/"
+    url = "https://ujeebu.com/blog/how-to-scrape-google-search-results/"
     result = extract_tool._run(
         url=url,
         text=True,
@@ -71,7 +71,7 @@ def extraction_with_html():
 
     extract_tool = UjeebuExtractTool()
 
-    url = "https://www.theverge.com/2024/1/16/24040562/google-layoffs-2024"
+    url = "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/"
     result = extract_tool._run(
         url=url,
         text=False,  # Skip plain text
@@ -112,7 +112,7 @@ def use_with_langchain_agent():
                 "messages": [
                     (
                         "human",
-                        "Extract the article from https://www.bbc.com/news/technology-67881954 and give me a 3-sentence summary.",
+                        "Extract the article from https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/ and give me a 3-sentence summary.",
                     )
                 ]
             }
@@ -143,7 +143,7 @@ def use_with_langchain_agent():
         executor = AgentExecutor(agent=agent, tools=[extract_tool], verbose=True)
         result = executor.invoke(
             {
-                "input": "Extract the article from https://www.bbc.com/news/technology-67881954 and give me a 3-sentence summary."
+                "input": "Extract the article from https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/ and give me a 3-sentence summary."
             }
         )
         response = result.get("output", str(result))
@@ -162,9 +162,9 @@ def batch_extraction():
     extract_tool = UjeebuExtractTool()
 
     urls = [
-        "https://www.bbc.com/news/technology-67881954",
-        "https://www.theverge.com/2024/1/16/24040562/google-layoffs-2024",
-        "https://techcrunch.com/2024/01/15/openai-gpt-store/",
+        "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/",
+        "https://ujeebu.com/blog/how-to-scrape-google-search-results/",
+        "https://en.wikipedia.org/wiki/Web_scraping",
     ]
 
     for i, url in enumerate(urls, 1):

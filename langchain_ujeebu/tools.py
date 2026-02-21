@@ -124,12 +124,12 @@ class UjeebuExtractTool(BaseTool):
             Formatted string containing the extracted article content
         """
         params: Dict[str, Any] = {
-            "text": text,
-            "html": html,
-            "author": author,
-            "pub_date": pub_date,
-            "images": images,
-            "quick_mode": quick_mode,
+            "text": int(text),
+            "html": int(html),
+            "author": int(author),
+            "pub_date": int(pub_date),
+            "images": int(images),
+            "quick_mode": int(quick_mode),
         }
 
         try:
@@ -327,8 +327,8 @@ class UjeebuScrapeTool(BaseTool):
             Scraped content or extracted data as a string
         """
         params: Dict[str, Any] = {
-            "js": js_rendering,
-            "json": True,
+            "js": int(js_rendering),
+            "json": 1,
         }
 
         if premium_proxy:
@@ -357,7 +357,7 @@ class UjeebuScrapeTool(BaseTool):
             # Format the response based on type
             if extract_rules:
                 # Return extracted data as formatted JSON
-                extracted = data.get("data", {})
+                extracted = data.get("result", {})
                 return json.dumps(extracted, indent=2)
             elif response_type == "screenshot":
                 screenshot_url = data.get("screenshot")

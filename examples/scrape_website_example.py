@@ -83,21 +83,20 @@ def scrape_ecommerce_product():
 
     scrape_tool = UjeebuScrapeTool()
 
-    # Extract product details from an Amazon-like page
+    # Extract product details from a book product page
     extraction_rules = {
         "product_title": {
-            "selector": "h1, .product-title, #productTitle",
+            "selector": "h1",
             "type": "text",
         },
-        "price": {"selector": ".price, .a-price-whole, [data-price]", "type": "text"},
+        "price": {"selector": ".price_color", "type": "text"},
         "description": {
-            "selector": "#productDescription, .product-description",
+            "selector": "#product_description ~ p",
             "type": "text",
         },
-        "images": {
-            "selector": "img.product-image, #imgTagWrapperId img",
-            "type": "image",
-            "multiple": True,
+        "availability": {
+            "selector": ".availability",
+            "type": "text",
         },
     }
 
@@ -143,9 +142,9 @@ def scrape_with_premium_proxy():
     scrape_tool = UjeebuScrapeTool()
 
     # Some sites require premium residential proxies
-    url = "https://httpbin.org/ip"
+    url = "https://quotes.toscrape.com/"
     result = scrape_tool._run(
-        url=url, js_rendering=False, premium_proxy=True  # Use premium residential proxy
+        url=url, js_rendering=True, premium_proxy=True  # Use premium residential proxy
     )
 
     print(f"\nScraped with premium proxy: {url}")

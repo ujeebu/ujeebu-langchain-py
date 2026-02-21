@@ -32,7 +32,7 @@ def load_single_article():
     print("=" * 60)
 
     loader = UjeebuLoader(
-        urls=["https://www.bbc.com/news/technology-67881954"],
+        urls=["https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/"],
         extract_text=True,
         extract_author=True,
         extract_pub_date=True,
@@ -62,9 +62,9 @@ def load_multiple_articles():
     print("=" * 60)
 
     urls = [
-        "https://www.bbc.com/news/technology-67881954",
-        "https://www.theverge.com/2024/1/16/24040562/google-layoffs-2024",
-        "https://techcrunch.com/2024/01/15/openai-gpt-store/",
+        "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/",
+        "https://ujeebu.com/blog/how-to-scrape-google-search-results/",
+        "https://en.wikipedia.org/wiki/Web_scraping",
     ]
 
     loader = UjeebuLoader(
@@ -92,7 +92,7 @@ def load_with_images():
     print("=" * 60)
 
     loader = UjeebuLoader(
-        urls=["https://www.bbc.com/news/technology-67881954"],
+        urls=["https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/"],
         extract_text=True,
         extract_images=True,
     )
@@ -127,7 +127,7 @@ def use_with_text_splitter():
 
     # Load articles
     loader = UjeebuLoader(
-        urls=["https://www.bbc.com/news/technology-67881954"],
+        urls=["https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/"],
         extract_text=True,
     )
     documents = loader.load()
@@ -163,13 +163,13 @@ def use_with_vector_store():
 
     from langchain.text_splitter import RecursiveCharacterTextSplitter
     from langchain_openai import OpenAIEmbeddings
-    from langchain.vectorstores import FAISS
+    from langchain_community.vectorstores import FAISS
 
     # Load multiple articles
     loader = UjeebuLoader(
         urls=[
-            "https://www.bbc.com/news/technology-67881954",
-            "https://techcrunch.com/2024/01/15/openai-gpt-store/",
+            "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/",
+            "https://ujeebu.com/blog/how-to-scrape-google-search-results/",
         ],
         quick_mode=True,
     )
@@ -189,7 +189,7 @@ def use_with_vector_store():
     print(f"\n🔍 Vector store created with {len(chunks)} chunks")
 
     # Test similarity search
-    query = "What are the latest AI developments?"
+    query = "What are web scraping techniques?"
     results = vectorstore.similarity_search(query, k=3)
 
     print(f"\n   Query: '{query}'")
@@ -214,14 +214,14 @@ def build_qa_chain():
 
     from langchain.text_splitter import RecursiveCharacterTextSplitter
     from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-    from langchain.vectorstores import FAISS
+    from langchain_community.vectorstores import FAISS
     from langchain.chains import RetrievalQA
 
     # Load and process documents
     loader = UjeebuLoader(
         urls=[
-            "https://www.bbc.com/news/technology-67881954",
-            "https://techcrunch.com/2024/01/15/openai-gpt-store/",
+            "https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/",
+            "https://ujeebu.com/blog/how-to-scrape-google-search-results/",
         ],
         quick_mode=True,
     )
@@ -249,7 +249,7 @@ def build_qa_chain():
     # Ask questions
     questions = [
         "What is the main topic of these articles?",
-        "Are there any mentions of AI companies?",
+        "What tools are mentioned for web scraping?",
     ]
 
     print("\n🤖 Q&A Chain Results:")

@@ -78,7 +78,7 @@ def research_task_single_article():
     agent, agent_type = create_agent([extract_tool], llm)
 
     query = """
-    Please extract the article from https://www.bbc.com/news/technology-67881954
+    Please extract the article from https://ujeebu.com/blog/enhancing-lead-generation-with-web-data-scraping-and-content-extraction-2/
     and provide:
     1. A brief summary (2-3 sentences)
     2. The main topic
@@ -221,7 +221,7 @@ def direct_research_without_agent():
 
     # Step 2: Extract a specific article
     print("\n📄 Step 2: Extracting article content...")
-    article = extract_tool._run(url="https://quotes.toscrape.com/")
+    article = extract_tool._run(url="https://ujeebu.com/blog/how-to-scrape-google-search-results/")
     print(f"Extracted content preview:\n{article[:400]}...")
 
 
