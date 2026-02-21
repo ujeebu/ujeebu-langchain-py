@@ -3,7 +3,7 @@
 import pytest
 from unittest.mock import Mock, patch
 from langchain_ujeebu.document_loaders import UjeebuLoader
-from langchain.docstore.document import Document
+from langchain_core.documents import Document
 import requests
 
 
