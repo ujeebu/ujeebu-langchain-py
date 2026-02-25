@@ -145,7 +145,7 @@ Thumbs.db
 
 # Project-specific ignores
 tmp/
-docs/ujeebu-docs/
+/docs/ujeebu-docs
 
 # Local development files
 *.local
