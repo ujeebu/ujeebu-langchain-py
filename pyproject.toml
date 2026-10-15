@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "langchain-ujeebu"
 version = "0.1.1"
-description = "LangChain integration for Ujeebu Extract API"
+description = "LangChain integration for Ujeebu: clean article content and web pages for LLM agents and RAG pipelines"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
     {name = "Ujeebu", email = "support@ujeebu.com"}
 ]
-keywords = ["langchain", "ujeebu", "extract", "article", "scraping", "nlp", "llm", "ai"]
+keywords = ["langchain", "ujeebu", "web scraping", "article extraction", "document loader", "rag", "llm", "ai agents"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -61,8 +61,9 @@ test_integration = [
 [project.urls]
 Homepage = "https://ujeebu.com"
 Documentation = "https://ujeebu.com/docs"
-Repository = "https://github.com/ujeebu/langchain-ujeebu"
-"Bug Tracker" = "https://github.com/ujeebu/langchain-ujeebu/issues"
+Pricing = "https://ujeebu.com/pricing"
+Repository = "https://github.com/ujeebu/ujeebu-langchain-py"
+"Bug Tracker" = "https://github.com/ujeebu/ujeebu-langchain-py/issues"
 
 [tool.setuptools.packages.find]
 include = ["langchain_ujeebu*"]
